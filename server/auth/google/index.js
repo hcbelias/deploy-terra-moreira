@@ -1,0 +1,36 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _passport = require('passport');
+
+var _passport2 = _interopRequireDefault(_passport);
+
+var _auth = require('../auth.service');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var router = _express2.default.Router();
+
+router.get('/', _passport2.default.authenticate('google', {
+  failureRedirect: '/login',
+  failureFlash: true,
+  scope: ['profile', 'email'],
+  session: false,
+  prompt: 'select_account',
+  hd: 'avenuecode.com',
+  login_hint: 'you@avenuecode.com'
+})).get('/callback', _passport2.default.authenticate('google', {
+  failureRedirect: '/login',
+  failureFlash: true,
+  session: false
+}), _auth.setTokenCookie);
+
+exports.default = router;
+//# sourceMappingURL=../../auth/google/index.js.map
