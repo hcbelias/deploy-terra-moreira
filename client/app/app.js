@@ -1,12 +1,9 @@
 'use strict';
 
-angular.module('webapp', ['webapp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'validation.match', 'ngMaterial', 'ngMessages', 'pascalprecht.translate']).config(function ($urlRouterProvider, $locationProvider, $translateProvider, $mdThemingProvider, appConfig) {
+angular.module('webapp', ['webapp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'validation.match', 'ngMaterial', 'ngMessages']).config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
-    $translateProvider.useSanitizeValueStrategy('sanitize');
-    $translateProvider.translations('pt', appConfig.I18N.pt);
-    $translateProvider.preferredLanguage('pt');
-    $mdThemingProvider.theme('default').primaryPalette('grey').warnPalette('red');
+    $mdThemingProvider.theme('default').primaryPalette('grey').warnPalette('orange');
 });
 //# sourceMappingURL=../app/app.js.map
 'use strict';
@@ -37,6 +34,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 (function () {
   var MainController = function MainController() {
     _classCallCheck(this, MainController);
+
+    this.image = 'assets/img/piece.jpg';
   };
 
   angular.module('webapp').component('main', {
@@ -316,14 +315,51 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //# sourceMappingURL=../../components/footer/footer.component.js.map
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (function () {
-  var ToolbarController = function ToolbarController() {
-    _classCallCheck(this, ToolbarController);
+  var ToolbarController = function () {
+    function ToolbarController($mdSidenav, $stateParams) {
+      _classCallCheck(this, ToolbarController);
 
-    this.title = "Advocacia Terra Moreira";
-  };
+      this.title = 'Terra Moreira';
+      this.toggleLeft = this.buildToggler('left');
+      this.toggleRight = this.buildToggler('right');
+      this.navbar = this.getNavbar();
+
+      this.image = 'assets/img/cartao.jpg';
+    }
+
+    _createClass(ToolbarController, [{
+      key: 'getNavbar',
+      value: function getNavbar() {
+        return [{
+          title: 'Home'
+        }, {
+          title: 'Quem Somos'
+        }, {
+          title: 'Áreas de Atuação'
+        }, {
+          title: 'Área do Cliente'
+        }, {
+          title: 'Dicionário Jurídico'
+        }, {
+          title: 'Contato'
+        }];
+      }
+    }, {
+      key: 'buildToggler',
+      value: function buildToggler(componentId) {
+        return function () {
+          this.mdSidenav(componentId).toggle();
+        };
+      }
+    }]);
+
+    return ToolbarController;
+  }();
 
   angular.module('webapp').component('toolbar', {
     templateUrl: 'components/toolbar/toolbar.html',
@@ -447,7 +483,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   angular.module('webapp.util').factory('Util', UtilService);
 })();
 //# sourceMappingURL=../../components/util/util.service.js.map
-angular.module("webapp").run(["$templateCache", function($templateCache) {$templateCache.put("components/contact-info/contact-info.html","<div layout-padding=\"layout-padding\" layout=\"row\" layout-align=\"center center\" class=\"contact-info\"><div class=\"contact-info-icon\"><md-icon class=\"material-icons contact-info-icon-text\">{{ $ctrl.icon }}</md-icon></div><div flex=\"80\" class=\"contact-info-phone-text\"><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone1 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone2 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone3 }}</span></div></div></div>");
+angular.module("webapp").run(["$templateCache", function($templateCache) {$templateCache.put("app/main/main.html","<img ng-src=\"{{$ctrl.image}}\" alt=\"Advocacia Terra Moreira\" class=\"md-card-image img-responsive\"/><md-toolbar></md-toolbar>");
+$templateCache.put("components/contact-info/contact-info.html","<div layout-padding=\"layout-padding\" layout=\"row\" layout-align=\"center center\" class=\"contact-info\"><div class=\"contact-info-icon\"><md-icon class=\"material-icons contact-info-icon-text\">{{ $ctrl.icon }}</md-icon></div><div flex=\"80\" class=\"contact-info-phone-text\"><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone1 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone2 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone3 }}</span></div></div></div>");
 $templateCache.put("components/footer/footer.html","<div layout=\"column\" layout-gt-sm=\"row\" flex=\"50\" layout-align=\"center center\"><contact-info icon=\"phone\" phone1=\"2523-8533\" phone2=\"3018-6128\" phone3=\"3515-5099\"> </contact-info><contact-info icon=\"smartphone\" phone1=\"98563-2664\" phone2=\"99376-3195\" phone3=\"98104-7997\"></contact-info></div><div layout-align=\"start center\" layout=\"column\" flex=\"50\" class=\"address-container\"><span class=\"address\">Rua Tenente Brito de Melo, 404  </span><span class=\"address\">Barro Preto - Belo Horizonte/MG</span><span class=\"address\">CEP: 30180-072</span></div>");
-$templateCache.put("components/toolbar/toolbar.html","<md-toolbar md-scroll-shrink=\"\" class=\"md-toolbar\"><div layout-align=\"center center\" layout-align-gt-sm=\"start center\" class=\"md-toolbar-tools\"><img src=\"assets/img/logo-56px.png\"/></div></md-toolbar>");
-$templateCache.put("app/main/main.html","<div>hello</div>");}]);
+$templateCache.put("components/toolbar/toolbar.html","<md-toolbar md-scroll-shrink=\"\" class=\"md-toolbar\"><div layout=\"row\" class=\"degrade\"></div><div layout=\"row\" layout-align=\"space-between center\" class=\"md-toolbar-tools content\"><img ng-src=\"{{$ctrl.image}}\" alt=\"Advocacia Terra Moreira\" class=\"md-card-image\"/><md-nav-bar flex=\"\" md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\" hide=\"hide\" show-gt-sm=\"\" class=\"md-warn\"><md-nav-item ng-repeat=\"item in $ctrl.navbar\" md-nav-click=\"goto(\'page1\')\" name=\"page1\">{{item.title}}</md-nav-item></md-nav-bar><md-button><i class=\"inset material-icons\">menu</i></md-button></div><div layout=\"row\" class=\"degrade\"></div></md-toolbar>");}]);
