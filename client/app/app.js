@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('webapp', ['webapp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'validation.match', 'ngMaterial', 'ngMessages']).config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider) {
+angular.module('webapp', ['webapp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'validation.match', 'ngMaterial', 'ngMessages', 'ngAnimate']).config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
   $mdThemingProvider.theme('default').primaryPalette('grey').warnPalette('deep-orange').accentPalette('red').dark();
@@ -302,12 +302,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //# sourceMappingURL=../../components/contact-info/contact-info.component.js.map
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (function () {
-  var ContactController = function ContactController() {
-    _classCallCheck(this, ContactController);
-  };
+  var ContactController = function () {
+    function ContactController() {
+      _classCallCheck(this, ContactController);
+    }
+
+    _createClass(ContactController, [{
+      key: 'submitEmail',
+      value: function submitEmail() {
+        debugger;
+      }
+    }]);
+
+    return ContactController;
+  }();
 
   angular.module('webapp').component('contact', {
     templateUrl: 'components/contact/contact.html',
@@ -317,11 +330,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //# sourceMappingURL=../../components/contact/contact.component.js.map
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (function () {
-  var FooterController = function FooterController() {
+  var FacebookButtonController = function () {
+    function FacebookButtonController($window) {
+      _classCallCheck(this, FacebookButtonController);
+
+      this.window = $window;
+    }
+
+    _createClass(FacebookButtonController, [{
+      key: "openFacebook",
+      value: function openFacebook() {
+        this.window.open("https://www.facebook.com/advterramoreira/", "_blank");
+      }
+    }]);
+
+    return FacebookButtonController;
+  }();
+
+  angular.module('webapp').component('facebookButton', {
+    templateUrl: 'components/facebook-button/facebook-button.html',
+    controller: FacebookButtonController
+  });
+})();
+//# sourceMappingURL=../../components/facebook-button/facebook-button.component.js.map
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+(function () {
+  var FooterController = function FooterController($window) {
     _classCallCheck(this, FooterController);
+
+    this.window = $window;
   };
 
   angular.module('webapp').component('footer', {
@@ -498,8 +543,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   angular.module('webapp.util').factory('Util', UtilService);
 })();
 //# sourceMappingURL=../../components/util/util.service.js.map
-angular.module("webapp").run(["$templateCache", function($templateCache) {$templateCache.put("app/main/main.html","<div class=\"image-background md-whiteframe-18dp\"><img ng-src=\"{{$ctrl.image}}\" alt=\"Advocacia Terra Moreira\" class=\"md-card-image img-responsive content md-whiteframe-20d\"/></div><md-toolbar class=\"content-divider\"><md-toolbar-tools></md-toolbar-tools></md-toolbar><div class=\"card-section md-whiteframe-16dp\"><md-card class=\"content card md-whiteframe-20dp\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Quem Somos</span></md-toolbar-tools></md-toolbar><div layout=\"row\" class=\"degrade\"></div><md-card-content><p>O escritório Terra Moreira Sociedade de Advogados está inscrito na OAB/MG sob o número 5.536, sendo um escritório completo que oferece apoio profissional experiente para indivíduos e empresas. Somos um escritório consolidado no mercado da advocacia, com atuação em diversas áreas do Direito.</p><p>O diferencial do escritório é a sua atuação personalizada e estreita relação com o cliente, oferecendo soluções rápidas, seguras e eficazes para os questionamentos apresentados, sempre pautando-se na ética profissional e absoluto sigilo nas negociações, sempre no interesse dos clientes.</p></md-card-content></md-card><md-card class=\"content card md-whiteframe-20dp\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Valores e Missão</span></md-toolbar-tools></md-toolbar><div layout=\"row\" class=\"degrade\"></div><md-card-content><p>Procuramos construir uma banca de advocacia sólida, respeitada, moderna, eficiente e dinâmica, pautada em princípios de profissionalismo, lealdade, parceria, modernidade e pioneirismo.</p><p>Nosso maior foco é alcançar os resultados almejados por nossos clientes, sendo que o fruto de nosso sucesso deve-se ao planejamento, profissionais qualificados, trabalhando duro, entusiasmo e dedicação à causa.</p><p> \nAgradecemos imensamente a todos os clientes, amigos, parceiros e funcionários que de alguma forma nos ajudam a implementar nossos projetos.</p></md-card-content></md-card></div><md-toolbar class=\"content-divider\"><md-toolbar-tools></md-toolbar-tools></md-toolbar><contact class=\"contact\"></contact>");
-$templateCache.put("components/contact-info/contact-info.html","<div layout-padding=\"layout-padding\" layout=\"row\" layout-align=\"center center\" class=\"contact-info\"><div class=\"contact-info-icon\"><md-icon class=\"material-icons contact-info-icon-text\">{{ $ctrl.icon }}</md-icon></div><div flex=\"80\" class=\"contact-info-phone-text\"><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone1 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone2 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone3 }}</span></div></div></div>");
-$templateCache.put("components/footer/footer.html","<div layout=\"column\" layout-gt-xs=\"row\" flex=\"50\" layout-align=\"center center\"><contact-info icon=\"phone\" phone1=\"2523-8533\" phone2=\"3018-6128\" phone3=\"3515-5099\"> </contact-info><contact-info icon=\"smartphone\" phone1=\"98563-2664\" phone2=\"99376-3195\" phone3=\"98104-7997\"></contact-info></div><div layout-align=\"start center\" layout=\"column\" flex=\"50\" class=\"address-container\"><span class=\"address\">Rua Tenente Brito de Melo, 404  </span><span class=\"address\">Barro Preto - Belo Horizonte/MG</span><span class=\"address\">CEP: 30180-072</span></div>");
-$templateCache.put("components/contact/contact.html","<md-card class=\"content card md-whiteframe-20dp contact-card\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Entre em contato conosco!</span></md-toolbar-tools></md-toolbar><md-card-content><div layout=\"column\" layout-gt-xs=\"row\" layout-align=\"center center\"><md-input-container><label>Nome</label><input ng-model=\"$ctrl.name\" required=\"required\"/></md-input-container><md-input-container><label>Telefone</label><input ng-model=\"$ctrl.phone\" type=\"phone\"/></md-input-container><md-input-container><label>E-mail</label><input ng-model=\"$ctrl.email\" type=\"email\"/></md-input-container></div><form name=\"contact-form\"><md-input-container flex=\"50\"><md-icon md-font-icon=\"icon-home\"></md-icon><label>Nome</label><input required=\"\" name=\"clientName\" ng-model=\"$ctrl.clientName\"/><div ng-messages=\"contact-form.clientName.$error\"><div ng-message=\"required\">This is required.</div></div></md-input-container></form></md-card-content></md-card>");
-$templateCache.put("components/toolbar/toolbar.html","<md-toolbar md-scroll-shrink=\"\" class=\"md-toolbar md-whiteframe-18dp\"><div layout=\"row\" layout-align=\"space-between center\" class=\"md-toolbar-tools content\"><img ng-src=\"{{$ctrl.image}}\" alt=\"Advocacia Terra Moreira\" class=\"md-card-image\"/><md-nav-bar flex=\"\" md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\" hide=\"hide\" show-gt-sm=\"\" class=\"md-warn\"><md-nav-item ng-repeat=\"item in $ctrl.navbar\" md-nav-click=\"goto(\'page1\')\" name=\"page1\">{{item.title}}</md-nav-item></md-nav-bar><md-button><i class=\"inset material-icons\">menu</i></md-button></div><div layout=\"row\" class=\"degrade\"></div></md-toolbar>");}]);
+angular.module("webapp").run(["$templateCache", function($templateCache) {$templateCache.put("components/contact/contact.html","<md-card class=\"content card md-whiteframe-20dp contact-card content-card\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Fale Conosco</span></md-toolbar-tools></md-toolbar><div layout=\"row\" class=\"degrade\"></div><md-card-content layout-align=\"center center\" layout=\"row\"><form name=\"contactForm\" layout=\"column\" layout-align=\"start start\" ng-submit=\"$ctrl.sendEmail()\"><div layout=\"column\" layout-gt-sm=\"row\"><md-input-container><label for=\"clientName\">Nome</label><input ng-model=\"$ctrl.name\" required=\"required\" name=\"clientName\" md-no-asterisk=\"md-no-asterisk\"/><div ng-messages=\"contactForm.clientName.$error\"><div ng-message=\"required\">Preenchimento obrigatório</div></div></md-input-container><md-input-container><label>Telefone</label><input ng-model=\"$ctrl.phone\" type=\"phone\" name=\"clientPhone\" required=\"required\" md-no-asterisk=\"md-no-asterisk\"/><div ng-messages=\"contactForm.clientPhone.$error\"><div ng-message=\"required\">Preenchimento obrigatório</div></div></md-input-container><md-input-container><label>E-mail</label><input ng-model=\"$ctrl.email\" type=\"email\" name=\"clientEmail\"/><div ng-messages=\"contactForm.clientEmail.$error\"><div ng-message=\"pattern\">Preenchimento obrigatório</div></div></md-input-container><md-input-container><label>Descrição</label><textarea ng-model=\"$ctrl.description\" name=\"clientDescription\" md-maxlength=\"250\" maxlength=\"250\" minlength=\"5\" md-minlength=\"5\" required=\"required\" md-no-asterisk=\"md-no-asterisk\" md-select-on-focus=\"md-select-on-focus\"></textarea><div ng-messages=\"contactForm.clientDescription.$error\"><div ng-message=\"required\">Preenchimento obrigatório</div><div ng-message=\"minlength\">Por favor, escreva uma pequena descrição</div></div></md-input-container><md-input-container><md-button type=\"submit\" ng-disabled=\"contactForm.$invalid\" class=\"send-button\">Enviar</md-button></md-input-container></div></form></md-card-content><div layout=\"row\" class=\"degrade\"></div><facebook-button flex=\"flex\"></facebook-button></md-card>");
+$templateCache.put("components/contact-info/contact-info.html","<div layout-padding=\"layout-padding\" layout=\"row\" layout-align=\"center center\" class=\"contact-info\"><div class=\"contact-info-icon\"><md-button aria-label=\"Nos visite no Facebook\" class=\"md-fab contact-icon\"><md-icon class=\"material-icons contact-info-icon-text\">{{ $ctrl.icon }}</md-icon></md-button></div><div flex=\"80\" class=\"contact-info-phone-text\"><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone1 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone2 }}</span></div><div layout=\"row\"> <span class=\"prefix\">(31) </span><span class=\"phone\">{{ $ctrl.phone3 }}</span></div></div></div>");
+$templateCache.put("components/facebook-button/facebook-button.html","<div layout-padding=\"layout-padding\" layout-margin=\"layout-margin\" layout-align=\"center center\" ng-click=\"$ctrl.openFacebook()\" layout=\"row\"><md-button aria-label=\"Nos visite no Facebook\" class=\"md-fab\"><img ng-src=\"/assets/img/facebook-white.png\" alt=\"Advocacia Terra Moreira\"/></md-button><span>Acesse nossa página no Facebook</span></div>");
+$templateCache.put("components/footer/footer.html","<div layout=\"column\" layout-gt-xs=\"row\" flex=\"50\" layout-align=\"center center\"><contact-info icon=\"phone\" phone1=\"2523-8533\" phone2=\"3018-6128\" phone3=\"3515-5099\"></contact-info><contact-info icon=\"smartphone\" phone1=\"98563-2664\" phone2=\"99376-3195\" phone3=\"98104-7997\"></contact-info></div><er layout-align=\"center center\" layout=\"column\" flex=\"50\"><span class=\"footer-text md-title\">Rua Tenente Brito de Melo, 404</span><span class=\"footer-text md-title\">Barro Preto - Belo Horizonte/MG</span><span class=\"footer-text md-title\">CEP: 30180-072</span></er>");
+$templateCache.put("components/toolbar/toolbar.html","<md-toolbar md-scroll-shrink=\"\" class=\"md-toolbar md-whiteframe-12dp\"><div layout=\"row\" layout-align=\"space-between center\" class=\"md-toolbar-tools content\"><img ng-src=\"{{$ctrl.image}}\" alt=\"Advocacia Terra Moreira\" class=\"md-card-image\"/><md-nav-bar flex=\"\" md-selected-nav-item=\"currentNavItem\" nav-bar-aria-label=\"navigation links\" hide=\"hide\" show-gt-sm=\"\" class=\"md-warn\"><md-nav-item ng-repeat=\"item in $ctrl.navbar\" md-nav-click=\"goto(\'page1\')\" name=\"page1\">{{item.title}}</md-nav-item></md-nav-bar><md-button><i class=\"inset material-icons\">menu</i></md-button></div><div layout=\"row\" class=\"degrade\"></div></md-toolbar>");
+$templateCache.put("app/main/main.html","<md-content><div class=\"image-background md-whiteframe-18dp\"><img ng-src=\"{{$ctrl.image}}\" alt=\"Advocacia Terra Moreira\" class=\"md-card-image img-responsive content md-whiteframe-20d\"/></div><md-toolbar class=\"content-divider\"><md-toolbar-tools></md-toolbar-tools></md-toolbar><div class=\"card-section md-whiteframe-16dp\"><md-card class=\"content card md-whiteframe-20dp content-card\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Quem Somos</span></md-toolbar-tools></md-toolbar><div layout=\"row\" class=\"degrade\"></div><md-card-content><p class=\"md-body-1\">O escritório Terra Moreira Sociedade de Advogados está inscrito na OAB/MG sob o número 5.536, sendo um escritório completo que oferece apoio profissional experiente para indivíduos e empresas. Somos um escritório consolidado no mercado da advocacia, com atuação em diversas áreas do Direito.</p><p class=\"md-body-1\">O diferencial do escritório é a sua atuação personalizada e estreita relação com o cliente, oferecendo soluções rápidas, seguras e eficazes para os questionamentos apresentados, pautando-se na ética profissional e absoluto sigilo nas negociações, sempre visando o melhor interesse do cliente. </p></md-card-content></md-card><md-card class=\"content card md-whiteframe-20dp content-card\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Valores e Missão</span></md-toolbar-tools></md-toolbar><div layout=\"row\" class=\"degrade\"></div><md-card-content><p class=\"md-body-1\">Procuramos construir uma banca de advocacia sólida, respeitada, moderna, eficiente e dinâmica, pautada em princípios de profissionalismo, lealdade, parceria, modernidade e pioneirismo.</p><p class=\"md-body-1\">Nosso maior foco é alcançar os resultados almejados por nossos clientes, sendo que o fruto de nosso sucesso deve-se ao planejamento, profissionais qualificados, trabalho árduo, entusiasmo e dedicação à causa.</p><p class=\"md-body-1\">Agradecemos imensamente a todos os clientes, amigos, parceiros e funcionários que de alguma forma nos ajudam a implementar nossos projetos.</p></md-card-content></md-card><md-card class=\"content card md-whiteframe-20dp content-card\"><md-toolbar><md-toolbar-tools><span class=\"md-headline\">Onde Estamos</span></md-toolbar-tools></md-toolbar><div layout=\"row\" class=\"degrade\"></div><md-card-content><p class=\"md-body-1\">Procuramos construir uma banca de advocacia sólida, respeitada, moderna, eficiente e dinâmica, pautada em princípios de profissionalismo, lealdade, parceria, modernidade e pioneirismo.</p><p class=\"md-body-1\">Nosso maior foco é alcançar os resultados almejados por nossos clientes, sendo que o fruto de nosso sucesso deve-se ao planejamento, profissionais qualificados, trabalho árduo, entusiasmo e dedicação à causa.</p><p class=\"md-body-1\">Agradecemos imensamente a todos os clientes, amigos, parceiros e funcionários que de alguma forma nos ajudam a implementar nossos projetos.</p></md-card-content></md-card></div><md-toolbar class=\"content-divider\"><md-toolbar-tools></md-toolbar-tools></md-toolbar><contact class=\"contact\"></contact><md-toolbar class=\"content-divider\"><md-toolbar-tools></md-toolbar-tools></md-toolbar></md-content>");}]);
