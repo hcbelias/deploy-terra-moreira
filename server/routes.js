@@ -5,20 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (app, config) {
-  // Insert routes below
-  app.use('/auth', require('./auth').default);
-
-  app.route('/login').get(function (req, res) {
-    var errorMessage = req.flash('error');
-
-    if (errorMessage.length > 0) {
-      var cookieName = 'error-login';
-      res.cookie(cookieName, config.I18N.en[config.cookies[cookieName]]);
-    }
-
-    res.sendFile(_path2.default.resolve(app.get('appPath') + '/index.html'));
-  });
-
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*').get(_errors2.default[404]);
 
